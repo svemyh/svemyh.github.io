@@ -1,181 +1,68 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>Sveinung Myhre</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sveinung myhre</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='white'/></svg>">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <meta name="author" content="Ola Nordmann">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fafafa;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
 
-  </head>
+    .container {
+      text-align: center;
+      padding: 2rem;
+    }
 
-  <body>
-    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      <tr style="padding:0px">
-        <td style="padding:0px">
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr style="padding:0px">
-              <td style="padding:2.5%;width:63%;vertical-align:middle">
-                <p class="name" style="text-align: center;">
-                  Ola Nordmann
-                </p>
-                <p>
-		I'm a student at <a href="https://www.sintef.no/">NTNU</a> in Trondheim, where I lead a team working on computer vision and AI for Arctic applications.
-		Previously, I worked at the <a href="https://www.ntnu.edu/">Norwegian University of Science and Technology (NTNU)</a> on projects involving autonomous systems, marine robotics, and sustainable AI.
-		I completed my PhD at <a href="https://www.uio.no/">University of Oslo</a>, focusing on machine learning for environmental monitoring in Nordic conditions.
-		I've received the Norwegian Research Council's Outstanding Young Researcher Award.
-                </p>
-                <p style="text-align:center">
-                  <a href="mailto:ola.nordmann@ntnu.no">Email</a> &nbsp;/&nbsp;
-                  <a href="#cv">CV</a> &nbsp;/&nbsp;
-                  <a href="https://scholar.google.com/">Scholar</a> &nbsp;/&nbsp;
-                  <a href="https://github.com/olanordmann">Github</a> &nbsp;/&nbsp;
-                  <a href="https://linkedin.com/in/olanordmann">LinkedIn</a>
-                </p>
-              </td>
-              <td style="padding:2.5%;width:37%;max-width:37%">
-                <a href="images/images/JonBarron.jpg"><img style="width:100%;max-width:100%;object-fit: cover; border-radius: 50%;" alt="profile photo" src="images/images/JonBarron.jpg" class="hoverZoomLink"></a>
-              </td>
-            </tr>
-          </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-              <tr>
-              <td style="padding:16px;width:100%;vertical-align:middle">
-                <h2>Research</h2>
-                <p>
-                  I'm interested in computer vision, machine learning, and sustainable AI. My research focuses on developing robust AI systems that work in challenging Nordic environments, including underwater robotics, Arctic monitoring, and energy-efficient deep learning. Some papers are <span class="highlight">highlighted</span>.
-                </p>
-              </td>
-            </tr>
-          </tbody></table>
-          <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
 
-    <tr bgcolor="#ffffd0">
-      <td style="padding:16px;width:20%;vertical-align:middle">
-        <img src='images/images/JonBarron.jpg' width="160" style="border-radius: 8px;">
-      </td>
-      <td style="padding:8px;width:80%;vertical-align:middle">
-        <a href="#arctic-vision">
-          <span class="papertitle">ArcticVision: Deep Learning for Sea Ice Monitoring in Svalbard</span>
-        </a>
-        <br>
-        <strong>Ola Nordmann</strong>,
-        Astrid Hansen,
-        Erik Solberg,
-        Kari Fjellheim
-        <br>
-        <em>International Conference on Computer Vision (ICCV)</em>, 2024
-        <br>
-        <a href="#arctic-vision">project page</a>
-        /
-        <a href="#arctic-vision">paper</a>
-        /
-        <a href="#arctic-vision">code</a>
-        <p></p>
-        <p>
-        A novel computer vision system for monitoring sea ice conditions in the Arctic using satellite imagery and drone surveillance. Our method achieves 94% accuracy in ice thickness estimation and has been deployed by the Norwegian Meteorological Institute.
-        </p>
-      </td>
-    </tr>
+    .link {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      border: 1px solid #1a1a1a;
+      color: #1a1a1a;
+      background-color: transparent;
+    }
 
-    <tr>
-      <td style="padding:16px;width:20%;vertical-align:middle">
-        <img src='images/images/JonBarron.jpg' width="160" style="border-radius: 8px;">
-      </td>
-      <td style="padding:8px;width:80%;vertical-align:middle">
-        <a href="#fjord-robotics">
-          <span class="papertitle">FjordNet: Autonomous Underwater Vehicle Navigation in Norwegian Fjords</span>
-        </a>
-        <br>
-        <strong>Ola Nordmann</strong>,
-        Magnus Olsen,
-        Ingrid Berge,
-        Tor Kristiansen
-        <br>
-        <em>Robotics and Autonomous Systems</em>, 2024
-        <br>
-        <a href="#fjord-robotics">project page</a>
-        /
-        <a href="#fjord-robotics">paper</a>
-        <p></p>
-        <p>
-        An AI-powered navigation system for autonomous underwater vehicles operating in the complex underwater terrain of Norwegian fjords. Integrates sonar, visual, and environmental sensors for robust underwater SLAM.
-        </p>
-      </td>
-    </tr>
+    .link:hover {
+      background-color: #1a1a1a;
+      color: #fafafa;
+    }
+  </style>
+</head>
 
+<body>
+  <div class="container">
+    <nav class="links">
+      <a href="https://linkedin.com/in/sveinungmyhre" class="link" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/svemyh" class="link" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://myhre.co" class="link" target="_blank" rel="noopener">myhre.co</a>
+    </nav>
+  </div>
+</body>
 
-          </tbody></table>
-
-          <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20"><tbody>
-            <tr>
-              <td>
-                <h2>Projects & Collaborations</h2>
-              </td>
-            </tr>
-          </tbody></table>
-          <table width="100%" align="center" border="0" cellpadding="20"><tbody>
-
-            <tr>
-              <td style="padding:16px;width:20%;vertical-align:middle">
-                <img src="images/images/JonBarron.jpg" alt="Nordic AI Initiative" width="160" style="border-radius: 8px;">
-              </td>
-              <td width="80%" valign="center">
-                <a href="#nordic-ai">Nordic AI for Climate Initiative</a>
-                <br>
-                Co-founded a cross-Nordic research collaboration focusing on AI applications for climate monitoring and environmental protection. Partners include research institutions from Norway, Sweden, Denmark, Finland, and Iceland.
-              </td>
-            </tr>
-
-
-          </tbody></table>
-
-          <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20"><tbody>
-            <tr>
-              <td>
-                <h2>Awards & Recognition</h2>
-                <ul>
-                  <li>Norwegian Research Council Outstanding Young Researcher Award (2024)</li>
-                  <li>SINTEF Innovation Award for Sustainable AI (2023)</li>
-                  <li>Best Paper Award, Nordic Conference on Machine Learning (2023)</li>
-                  <li>Arctic Circle Assembly Science Award (2022)</li>
-                  <li>IEEE Young Professional Award in Sustainable Technology (2022)</li>
-                </ul>
-              </td>
-            </tr>
-          </tbody></table>
-
-          <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20"><tbody>
-            <tr>
-              <td>
-                <h2>Service</h2>
-                <ul>
-                  <li>Program Committee: ICCV, ECCV, NeurIPS</li>
-                  <li>Reviewer: Nature Machine Intelligence, IEEE TPAMI, Computer Vision and Image Understanding</li>
-                  <li>Advisory Board: Norwegian AI Research Consortium</li>
-                  <li>Editorial Board: Journal of Arctic Science and Technology</li>
-                </ul>
-              </td>
-            </tr>
-          </tbody></table>
-
-          <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20"><tbody>
-            <tr>
-              <td>
-                <br>
-                <p style="text-align:center;font-size:small;">
-                  Website design inspired by <a href="https://jonbarron.info/">Jon Barron</a>.
-                  <br>
-                  © 2025 Ola Nordmann. All rights reserved.
-                </p>
-              </td>
-            </tr>
-          </tbody></table>
-        </td>
-      </tr>
-    </tbody></table>
-  </body>
 </html>
