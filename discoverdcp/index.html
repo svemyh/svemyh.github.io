@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiscoverDCP: A Data-Driven Approach for Construction of Disciplined Convex Programs via Symbolic Regression
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --bg-color: #fff;
+            --code-bg: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            font-size: 17px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            font-weight: normal;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .authors {
+            font-size: 1.15em;
+            margin-bottom: 8px;
+        }
+
+        .authors a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .authors a:hover {
+            text-decoration: underline;
+        }
+
+        .affiliation {
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 25px;
+        }
+
+        .venue {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 0.9em;
+            transition: background-color 0.2s;
+        }
+
+        .links a:hover {
+            background-color: #1a252f;
+        }
+
+        .links a svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            font-weight: normal;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eee;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .abstract {
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-left: 4px solid var(--accent-color);
+            font-style: italic;
+        }
+
+        .demo-figure {
+            margin: 30px auto;
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .demo-figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .demo-caption {
+            margin-top: 10px;
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        .figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .figure-caption {
+            margin-top: 12px;
+            font-size: 0.9em;
+            color: #666;
+            text-align: left;
+            padding: 0 20px;
+        }
+
+        .figure-caption strong {
+            color: var(--primary-color);
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .bibtex {
+            background-color: var(--code-bg);
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            line-height: 1.5;
+            white-space: pre;
+        }
+
+        .method-overview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .method-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .method-box h3 {
+            font-size: 1.1em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .method-box ul {
+            margin: 0;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 700px) {
+            .method-overview {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+            color: #888;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>DiscoverDCP: A Data-Driven Approach for Construction of Disciplined Convex Programs via Symbolic
+                Regression</h1>
+
+            <div class="authors">
+                <a href="https://svemyh.github.io">Sveinung Myhre</a>
+            </div>
+
+            <div class="affiliation">
+                Department of Electrical Engineering and Computer Sciences<br>
+                University of California, Berkeley
+            </div>
+
+            <div class="venue">
+                arXiv preprint, December 2025
+            </div>
+
+            <div class="links">
+                <a href="https://arxiv.org/abs/2512.15721" target="_blank">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M4 4v16h16V8.586L15.414 4H4zm2 2h8v4h4v8H6V6zm10 .414L18.586 9H16V6.414zM8 12v2h8v-2H8zm0 4v2h5v-2H8z" />
+                    </svg>
+                    Paper (arXiv)
+                </a>
+                <a href="https://github.com/svemyh/DiscoverDCP" target="_blank">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+                    </svg>
+                    Code
+                </a>
+            </div>
+        </header>
+
+        <section>
+            <h2>Abstract</h2>
+            <div class="abstract">
+                We propose DiscoverDCP, a data-driven framework that integrates symbolic regression with the rule sets
+                of Disciplined Convex Programming (DCP) to perform system identification. By enforcing that all
+                discovered candidate model expressions adhere to DCP composition rules, we ensure that the output
+                expressions are globally convex by construction, circumventing the computationally intractable process
+                of post-hoc convexity verification. This approach allows for the discovery of convex surrogates that
+                exhibit more relaxed and accurate functional forms than traditional fixed-parameter convex expressions
+                (e.g., quadratic functions). The proposed method produces interpretable, verifiable, and flexible convex
+                models suitable for safety-critical control and optimization tasks.
+            </div>
+
+            <div class="demo-figure">
+                <img src="./assets/example1.gif" alt="DiscoverDCP iteratively improving model fit">
+                <div class="demo-caption">DiscoverDCP progressively discovers better-fitting convex expressions.</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Key Contributions</h2>
+            <ul>
+                <li>We propose <strong>DiscoverDCP</strong>, a method that restricts the symbolic regression search
+                    space to DCP-compliant operations, guaranteeing global convexity of learned models by construction.
+                </li>
+                <li>We demonstrate that this approach <strong>eliminates the need for intractable post-hoc convexity
+                        verification</strong> while offering greater interpretability than neural network-based
+                    approaches.</li>
+                <li>We show via synthetic experiments that our method can <strong>better recover exact convex
+                        formulations</strong> where traditional quadratic baselines fail.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Method Overview</h2>
+            <p>
+                The DiscoverDCP framework integrates symbolic regression with the rules of Disciplined Convex
+                Programming through two key mechanisms:
+            </p>
+
+            <div class="method-overview">
+                <div class="method-box">
+                    <h3>1. Convexity-Preserving Operations</h3>
+                    <ul>
+                        <li><strong>Binary:</strong> Addition ($+$), Multiplication ($*$), Maximum ($\max$)</li>
+                        <li><strong>Unary:</strong> Exponential ($\exp$), Square ($(\cdot)^2$), Absolute value
+                            ($|\cdot|$)</li>
+                    </ul>
+                </div>
+                <div class="method-box">
+                    <h3>2. Constrained Evolutionary Search</h3>
+                    <ul>
+                        <li>PySR as the search engine</li>
+                        <li>DCP constraint checks at mutation step</li>
+                        <li>Complexity penalty for interpretability</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p>
+                Crucially, the symbolic engine enforces nesting rules. For example, a convex function can only be
+                composed with a convex, non-decreasing function to remain convex. If a mutation produces an expression
+                tree that violates DCP rules, the candidate is rejected, ensuring that the population remains strictly
+                within DCP-compliant functions.
+            </p>
+        </section>
+
+        <section>
+            <h2>Results</h2>
+
+            <div class="figure">
+                <img src="./assets/1d-pysr-example.png" alt="Comparison of model fits on 1D synthetic data">
+                <div class="figure-caption">
+                    <strong>Figure 1:</strong> Comparison of model fits on 1D synthetic data. <span
+                        style="color: #e74c3c;">Red:</span> Ground truth ($y = \exp(x + \max(x, -5x) + x^2) + 4x$).
+                    <span style="color: #f1c40f;">Yellow:</span> PSD Quadratic fit ($y \approx 61.6x^2 - 20.4x - 4.9$).
+                    <span style="color: #3498db;">Blue:</span> DiscoverDCP low-complexity approximation. <span
+                        style="color: #9b59b6;">Purple:</span> DiscoverDCP high-complexity approximation.
+                </div>
+            </div>
+
+            <div class="figure">
+                <img src="./assets/1d-pysr-example-objectives-plot.png" alt="Functional forms of the discovered models">
+                <div class="figure-caption">
+                    <strong>Figure 2:</strong> Functional forms of the discovered models. <em>Left:</em> A parsimonious
+                    approximation found by DiscoverDCP ($y = e^{3.2x} + e^{-4.9x}$). <em>Right:</em> A higher complexity
+                    model that accurately captures the nested non-linearities of the ground truth.
+                </div>
+            </div>
+
+            <p>
+                The quadratic baseline fails to capture the sharp non-linearities introduced by the $\max$ operator. In
+                contrast, DiscoverDCP finds a highly accurate model. While the quadratic model is convex, it lacks the
+                flexibility to model exponential growth and switching behavior simultaneously. The high-complexity
+                solution recovers a structure very similar to the ground truth while maintaining convexity guarantees.
+            </p>
+        </section>
+
+        <section>
+            <h2>Citation</h2>
+            <div class="bibtex">@article{myhre2025discoverdcp,
+  title={DiscoverDCP: A Data-Driven Approach for Construction of Disciplined Convex Programs via Symbolic Regression},
+  author={Myhre, Sveinung},
+  journal={arXiv preprint arXiv:2512.15721},
+  year={2025}
+}</div>
+        </section>
+
+        <footer>
+            <p>For questions or feedback, please open an issue on <a href="https://github.com/svemyh/DiscoverDCP"
+                    style="color: var(--accent-color);">GitHub</a> or contact the author.</p>
+        </footer>
+    </div>
+</body>
+
+</html>
